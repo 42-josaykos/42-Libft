@@ -6,7 +6,7 @@
 /*   By: jonny <josaykos@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 19:56:14 by jonny             #+#    #+#             */
-/*   Updated: 2020/02/08 12:01:19 by josaykos         ###   ########.fr       */
+/*   Updated: 2020/07/30 18:06:22 by jonny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char			*ft_strchr(const char *str, int c);
 char			*ft_strrchr(const char *str, int c);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t			ft_strlcpy(char *dest, const char *src, size_t size);
+char			*ft_strldup(int len, const char *s1);
 size_t			ft_strlcat(char *dest, const char *src, size_t size);
 char			*ft_strnstr(const char *str, const char *to_find, size_t n);
 int				ft_atoi(const char *str);
