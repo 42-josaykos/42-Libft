@@ -6,7 +6,7 @@
 #    By: josaykos <josaykos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 10:30:02 by josaykos          #+#    #+#              #
-#    Updated: 2020/02/08 11:58:44 by josaykos         ###   ########.fr        #
+#    Updated: 2020/07/30 17:55:47 by jonny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS		= ft_memset.c \
 			  ft_strrchr.c \
 			  ft_strncmp.c \
 			  ft_strlcpy.c \
+			  ft_strldup.c \
 			  ft_strlcat.c \
 			  ft_strnstr.c \
 			  ft_atoi.c \
