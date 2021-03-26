@@ -6,20 +6,19 @@
 #    By: jonny <josaykos@student.42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 10:30:02 by josaykos          #+#    #+#              #
-#    Updated: 2021/03/13 10:20:51 by jonny            ###   ########.fr        #
+#    Updated: 2021/03/26 10:32:27 by jonny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libft.a
+NAME	= libft.a
 
-SRCS		= ft_memset.c \
+SRC		= ft_memset.c \
 			  ft_bzero.c \
 			  ft_memcpy.c \
 			  ft_memccpy.c \
 			  ft_memmove.c \
 			  ft_memchr.c \
 			  ft_memcmp.c \
-			  ft_strlen.c \
 			  ft_isalpha.c \
 			  ft_isdigit.c \
 			  ft_isalnum.c \
@@ -27,23 +26,25 @@ SRCS		= ft_memset.c \
 			  ft_isprint.c \
 			  ft_toupper.c \
 			  ft_tolower.c \
-			  ft_strchr.c \
-			  ft_strrchr.c \
-			  ft_strncmp.c \
-			  ft_strlcpy.c \
-			  ft_strldup.c \
-			  ft_strlcat.c \
-			  ft_strnstr.c \
+			  string/ft_strlen.c \
+			  string/ft_strchr.c \
+			  string/ft_strrchr.c \
+			  string/ft_strncmp.c \
+			  string/ft_strlcpy.c \
+			  string/ft_strldup.c \
+			  string/ft_strlcat.c \
+			  string/ft_strnstr.c \
+			  string/ft_strdup.c \
+			  string/ft_strcat.c \
+			  string/ft_substr.c \
+			  string/ft_strtrim.c \
+			  string/ft_strjoin.c \
+			  string/ft_split.c \
+			  string/ft_strmapi.c \
+				string/split_whitespace.c \
 			  ft_atoi.c \
 			  ft_calloc.c \
-			  ft_strdup.c \
-			  ft_strcat.c \
-			  ft_substr.c \
-			  ft_strtrim.c \
-			  ft_strjoin.c \
-			  ft_split.c \
 			  ft_itoa.c \
-			  ft_strmapi.c \
 			  ft_putchar_fd.c \
 			  ft_putstr_fd.c \
 			  ft_putendl_fd.c \
@@ -66,24 +67,28 @@ SRCS		= ft_memset.c \
 			  ft_printf/ft_printf_nbr.c \
 			  ft_printf/ft_printf_print.c \
 			  ft_printf/ft_printf_str.c \
-				split_whitespace.c \
 				ft_putchar.c \
 
-OBJS		= $(SRCS:.c=.o)
+OBJ		 		= $(SRC:.c=.o)
 
-RM			= rm -rf
-CFLAGS		= -Wall -Wextra -Werror
+RM 				= rm -rf
+CC 				= clang
+MEM				= -g -O3 -fsanitize=address
+INCLUDES 	= -Iincludes
 
-all:		$(NAME)
+all:	$(NAME)
 
-$(NAME):	$(OBJS)
-	ar rc $(NAME) $(OBJS)
+$(NAME): $(OBJ)
+	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
+%.o: %.c
+	$(CC) -Wall -Wextra -Werror $(INCLUDES) -c $< -o $@
+
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJ)
 
 fclean:		clean
 	$(RM) $(NAME)
 
-re: fclean all
+re: clean fclean all

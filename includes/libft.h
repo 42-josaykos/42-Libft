@@ -6,7 +6,7 @@
 /*   By: jonny <josaykos@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 19:56:14 by jonny             #+#    #+#             */
-/*   Updated: 2021/03/13 10:20:25 by jonny            ###   ########.fr       */
+/*   Updated: 2021/03/26 10:30:51 by jonny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-# include "get_next_line/get_next_line.h"
-# include "ft_printf/libftprintf.h"
+# include "get_next_line.h"
+# include "libftprintf.h"
 
 typedef struct s_list
 {
