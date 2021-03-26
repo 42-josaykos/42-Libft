@@ -6,7 +6,7 @@
 /*   By: jonny <josaykos@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/01 23:03:58 by jonny             #+#    #+#             */
-/*   Updated: 2020/01/06 15:50:27 by josaykos         ###   ########.fr       */
+/*   Updated: 2021/03/13 10:17:47 by jonny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ void	print_char(va_list params, t_specs *specs, int *ret)
 	char			padding;
 
 	c = va_arg(params, int);
-	padding = (specs->flag == '0' ? '0' : ' ');
+	if (specs->flag == '0')
+		padding = '0';
+	else
+		padding = ' ';
 	if (specs->flag == '-')
-		ft_putchar(c, ret);
+		ft_putchar_ret(c, ret);
 	while (specs->width-- > 1)
-		ft_putchar(padding, ret);
+		ft_putchar_ret(padding, ret);
 	if (specs->flag != '-')
-		ft_putchar(c, ret);
+		ft_putchar_ret(c, ret);
 }
 
 /*
@@ -39,7 +42,7 @@ void	print_str(va_list params, t_specs *specs, int *ret)
 	int		len;
 
 	len = 0;
-	str = va_arg(params, char*);
+	str = va_arg(params, char *);
 	if (!str)
 		str = "(null)";
 	while ((len < specs->precision || specs->precision == -1) && str[len])
@@ -65,7 +68,7 @@ void	print_pointer(va_list params, t_specs *specs, int *ret)
 	char		*str;
 
 	len = 0;
-	nb = (long int)va_arg(params, void*);
+	nb = (long int)va_arg(params, void *);
 	str = itoa_base(nb, 16, "0123456789abcdef");
 	if (str[0] == '0' && specs->precision != -1)
 		str[0] = '\0';
@@ -102,7 +105,10 @@ void	print_dectohexa(va_list params, t_specs *specs, int *ret)
 	char			*str;
 	unsigned int	nb;
 
-	tab = (specs->type == 'X' ? "0123456789ABCDEF" : "0123456789abcdef");
+	if (specs->type == 'X')
+		tab = "0123456789ABCDEF";
+	else
+		tab = "0123456789abcdef";
 	nb = va_arg(params, unsigned int);
 	str = itoa_base(nb, 16, tab);
 	check_nbr_flag(specs, str, ret);

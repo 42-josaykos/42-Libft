@@ -6,13 +6,13 @@
 /*   By: jonny <josaykos@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 12:41:47 by jonny             #+#    #+#             */
-/*   Updated: 2020/01/06 14:20:54 by josaykos         ###   ########.fr       */
+/*   Updated: 2021/03/13 10:14:39 by jonny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	ft_putchar(char c, int *ret)
+void	ft_putchar_ret(char c, int *ret)
 {
 	write(1, &c, 1);
 	*ret += 1;
@@ -20,11 +20,11 @@ void	ft_putchar(char c, int *ret)
 
 void	ft_putstr(char *str, int *ret)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
-		ft_putchar(str[i++], ret);
+		ft_putchar_ret(str[i++], ret);
 }
 
 /*
@@ -33,16 +33,16 @@ void	ft_putstr(char *str, int *ret)
 
 void	str_whitespace(t_specs *specs, char *str, int len, int *ret)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (specs->width - len > 0)
 	{
-		ft_putchar(' ', ret);
+		ft_putchar_ret(' ', ret);
 		specs->width--;
 	}
 	while (i < len)
-		ft_putchar(str[i++], ret);
+		ft_putchar_ret(str[i++], ret);
 }
 
 /*
@@ -52,14 +52,14 @@ void	str_whitespace(t_specs *specs, char *str, int len, int *ret)
 
 void	str_padding(t_specs *specs, char *str, int len, int *ret)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < len)
-		ft_putchar(str[i++], ret);
+		ft_putchar_ret(str[i++], ret);
 	while (specs->width - len > 0)
 	{
-		ft_putchar(' ', ret);
+		ft_putchar_ret(' ', ret);
 		specs->width--;
 	}
 }
@@ -70,14 +70,14 @@ void	str_padding(t_specs *specs, char *str, int len, int *ret)
 
 void	str_zero_padding(t_specs *specs, char *str, int len, int *ret)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (specs->width - len > 0)
 	{
-		ft_putchar('0', ret);
+		ft_putchar_ret('0', ret);
 		specs->width--;
 	}
 	while (i < len)
-		ft_putchar(str[i++], ret);
+		ft_putchar_ret(str[i++], ret);
 }

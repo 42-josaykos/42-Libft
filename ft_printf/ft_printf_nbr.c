@@ -6,7 +6,7 @@
 /*   By: jonny <josaykos@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/01 20:49:25 by jonny             #+#    #+#             */
-/*   Updated: 2020/01/07 15:13:51 by josaykos         ###   ########.fr       */
+/*   Updated: 2021/03/13 10:17:28 by jonny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	nbr_whitespace(t_specs *specs, char *str, int len, int *ret)
 	if (str[0] == '-' && specs->precision >= len)
 		specs->width--;
 	while (specs->width > len && specs->width > specs->precision
-			&& specs->precision != 0)
+		&& specs->precision != 0)
 	{
-		ft_putchar(' ', ret);
+		ft_putchar_ret(' ', ret);
 		specs->width--;
 	}
 	if (specs->precision == 0 && str[0] == '0' && specs->width > 0)
 		specs->width++;
 	while (specs->width > len && specs->precision <= 0)
 	{
-		ft_putchar(' ', ret);
+		ft_putchar_ret(' ', ret);
 		specs->width--;
 	}
 }
@@ -38,7 +38,7 @@ void	nbr_padding(t_specs *specs, char *str, int len, int *ret)
 		ft_putstr(str, ret);
 	while ((specs->width - specs->precision > len) || (specs->width > len))
 	{
-		ft_putchar(' ', ret);
+		ft_putchar_ret(' ', ret);
 		specs->width--;
 	}
 }
@@ -54,18 +54,18 @@ void	nbr_padding(t_specs *specs, char *str, int len, int *ret)
 
 void	nbr_zero_padding(t_specs *specs, char *str, int len, int *ret)
 {
-	int n;
+	int	n;
 
 	n = specs->precision;
 	if (str[0] == '-')
 	{
-		ft_putchar('-', ret);
+		ft_putchar_ret('-', ret);
 		str++;
 		n++;
 	}
 	while ((specs->flag == '0' && specs->width > len) || n > len)
 	{
-		ft_putchar('0', ret);
+		ft_putchar_ret('0', ret);
 		len++;
 	}
 	if (!(n == 0 && str[0] == '0'))

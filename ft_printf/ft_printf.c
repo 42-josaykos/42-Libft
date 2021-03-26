@@ -6,7 +6,7 @@
 /*   By: jonny <josaykos@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 12:13:40 by jonny             #+#    #+#             */
-/*   Updated: 2020/01/06 15:55:48 by josaykos         ###   ########.fr       */
+/*   Updated: 2021/03/13 10:16:40 by jonny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	is_type(char c)
 {
-	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' ||
-			c == 'u' || c == 'x' || c == 'X' || c == '%')
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i'
+		|| c == 'u' || c == 'x' || c == 'X' || c == '%')
 		return (1);
 	return (0);
 }
@@ -25,17 +25,20 @@ static int	is_type(char c)
 ** or after the sign
 */
 
-void		print_percent(t_specs *specs, int *ret)
+void	print_percent(t_specs *specs, int *ret)
 {
-	char padding;
+	char	padding;
 
-	padding = (specs->flag == '0' ? '0' : ' ');
+	if (specs->flag == '0')
+		padding = '0';
+	else
+		padding = ' ';
 	if (specs->flag == '-')
-		ft_putchar('%', ret);
+		ft_putchar_ret('%', ret);
 	while (specs->width-- > 1)
-		ft_putchar(padding, ret);
+		ft_putchar_ret(padding, ret);
 	if (specs->flag != '-')
-		ft_putchar('%', ret);
+		ft_putchar_ret('%', ret);
 }
 
 /*
@@ -81,7 +84,7 @@ static int	parse_str(va_list params, const char *str, t_specs *specs, int *ret)
 	while (str[i] != '\0')
 	{
 		while (str[i] != '%' && str[i] != '\0')
-			ft_putchar(str[i++], ret);
+			ft_putchar_ret(str[i++], ret);
 		if (str[i] == '%')
 		{
 			i++;
@@ -100,7 +103,7 @@ static int	parse_str(va_list params, const char *str, t_specs *specs, int *ret)
 ** formatted string
 */
 
-int			ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	int		ret;
 	va_list	params;
@@ -108,7 +111,8 @@ int			ft_printf(const char *str, ...)
 
 	ret = 0;
 	va_start(params, str);
-	if (!(specs = malloc(sizeof(t_specs))))
+	specs = malloc(sizeof(t_specs));
+	if (!specs)
 		return (-1);
 	parse_str(params, str, specs, &ret);
 	va_end(params);
